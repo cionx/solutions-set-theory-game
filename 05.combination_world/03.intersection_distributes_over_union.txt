@@ -1,0 +1,15 @@
+apply Subset.antisymm
+
+-- A ∩ (B ∪ C) ⊆ (A ∩ B) ∪ (A ∩ C)
+intro x habc
+have ha : x ∈ A := habc.left
+have hbc : x ∈ B ∪ C := habc.right
+rcases hbc with hb | hc
+exact Or.inl (And.intro ha hb)
+exact Or.inr (And.intro ha hc)
+
+-- (A ∩ B) ∪ (A ∩ C) ⊆ A ∩ (B ∪ C)
+intro x habac
+rcases habac with hab | hac
+exact And.intro hab.left (Or.inl hab.right)
+exact And.intro hac.left (Or.inr hac.right)
