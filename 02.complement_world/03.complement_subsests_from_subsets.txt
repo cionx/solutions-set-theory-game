@@ -1,0 +1,6 @@
+intro x hx
+rewrite [mem_compl_iff A x]
+rewrite [mem_compl_iff B x] at hx
+intro ha
+have hb : x ∈ B := h1 ha
+exact hx hb
