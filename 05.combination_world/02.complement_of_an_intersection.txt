@@ -1,0 +1,5 @@
+have h : (Aᶜ ∪ Bᶜ)ᶜ = Aᶜᶜ ∩ Bᶜᶜ := compl_union Aᶜ Bᶜ
+rewrite [compl_compl A] at h
+rewrite [compl_compl B] at h
+rewrite [← h]
+apply compl_compl
