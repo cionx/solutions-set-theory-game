@@ -1,0 +1,9 @@
+ext x
+constructor
+
+-- (A ∩ B) ∩ C → A ∩ (B ∩ C)
+intro habc
+exact And.intro habc.left.left (And.intro habc.left.right habc.right)
+-- A ∩ (B ∩ C) → (A ∩ B) ∩ C
+intro habc
+exact And.intro (And.intro habc.left habc.right.left) habc.right.right
