@@ -1,0 +1,4 @@
+intro x hx
+constructor
+exact hx.right
+exact hx.left
