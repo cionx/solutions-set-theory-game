@@ -1,0 +1,4 @@
+intro x
+intro ha
+have hb : x ∈ B := h1 ha
+exact h2 hb
