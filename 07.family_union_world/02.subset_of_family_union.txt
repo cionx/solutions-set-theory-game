@@ -1,0 +1,2 @@
+intro a ha
+exact Exists.intro A (And.intro h1 ha)
