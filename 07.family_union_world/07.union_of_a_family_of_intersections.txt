@@ -1,0 +1,30 @@
+apply Subset.antisymm
+
+intro x hx
+have hxA := hx.left
+have hxF := hx.right
+obtain ⟨u, hu⟩ := hxF
+have huF := hu.left
+have hxu := hu.right
+rewrite [mem_sUnion]
+apply Exists.intro (A ∩ u)
+constructor
+rewrite [mem_setOf]
+apply Exists.intro u
+constructor
+exact huF
+rfl
+exact And.intro hxA hxu
+
+intro x hx
+obtain ⟨s, hs1⟩ := hx
+have hs2 := hs1.left
+have hxs := hs1.right
+obtain ⟨u, hu⟩ := hs2
+have huF := hu.left
+have hsAu := hu.right
+rewrite [hsAu] at hxs
+constructor
+exact hxs.left
+apply Exists.intro u
+exact And.intro huF hxs.right
