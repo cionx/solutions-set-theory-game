@@ -1,0 +1,15 @@
+intro x hx
+have hxF : x ∈ ⋃₀ F := hx.left
+have hxG : x ∈ ⋂₀ G := hx.right
+obtain ⟨s, hs⟩ := hxF
+have hsF : s ∈ F := hs.left
+have hxs : x ∈ s := hs.right
+obtain ⟨u, hu⟩ := h1 s hsF
+have huG : u ∈ G := hu.left
+have hsuH : s ∩ u ∈ H := hu.right
+apply Exists.intro (s ∩ u)
+constructor
+exact hsuH
+constructor
+exact hxs
+exact hxG u huG
