@@ -1,0 +1,14 @@
+intro x hx
+have hxF : x ∈ ⋃₀ F := hx.left
+have hxGc : x ∈ (⋃₀ G)ᶜ := hx.right
+obtain ⟨s, hs⟩ := hxF
+have hsF : s ∈ F := hs.left
+have hxs : x ∈ s := hs.right
+apply Exists.intro s
+constructor
+constructor
+exact hsF
+intro hsG
+have hxG : x ∈ ⋃₀ G := Exists.intro s (And.intro hsG hxs)
+exact hxGc hxG
+exact hxs
