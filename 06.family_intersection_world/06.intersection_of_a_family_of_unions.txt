@@ -1,0 +1,15 @@
+intro x hxG
+by_cases hxA : x ∈ A
+
+exact Or.inl hxA
+
+right
+intro s hsF
+have hAsG : A ∪ s ∈ G := h1 s hsF
+have hxAs := hxG (A ∪ s) hAsG
+rcases hxAs with hxA2 | hxs
+-- We still don’t have Ex Falso Quodlibet!!! >:(
+by_contra hxs
+exact hxA hxA2
+--
+exact hxs
