@@ -1,0 +1,21 @@
+intro x ha
+have hac : x ∈ A ∪ C := Or.inl ha
+have hbc := h1 hac
+rcases hbc with hb | hc
+exact hb
+have hac2 : x ∈ A ∩ C := And.intro ha hc
+have hbc2 : x ∈ B ∩ C := h2 hac2
+exact hbc2.left
+
+-- Another proof:
+-- A
+-- = A ∩ U
+-- = A ∩ (C ∪ Cᶜ)
+-- = (A ∩ C) ∪ (A ∩ Cᶜ)
+-- ⊆ (B ∩ C) ∪ ((A ∪ C) ∩ Cᶜ)
+-- ⊆ (B ∩ C) ∪ ((B ∪ C) ∩ Cᶜ)
+-- = B ∩ (C ∪ Cᶜ)
+-- = B ∩ U
+-- = B
+-- But this proof uses LEM and is also a pain to formalize
+-- because we dont’t have access to Ex Falso Quodlibet!
