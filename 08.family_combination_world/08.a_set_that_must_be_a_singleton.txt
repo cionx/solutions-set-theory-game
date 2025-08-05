@@ -1,0 +1,26 @@
+-- Idea: We use F = {all singleton subsets of A}.
+-- Then ⋃ F = A, and A ∈ F implies that A is a singleton.
+
+have h_union_singletons : ⋃₀ {s | ∃ a ∈ A, s = {a}} = A
+
+apply Subset.antisymm
+intro x hx
+obtain ⟨s,⟨hs, h⟩⟩ := hx
+rewrite [mem_setOf] at hs
+obtain ⟨a,⟨ha,has⟩⟩ := hs
+rewrite [has] at h
+rewrite [mem_singleton_iff] at h
+rewrite [h]
+exact ha
+
+intro a ha
+use {a}
+rewrite [mem_setOf]
+constructor
+use a
+rfl
+
+have h := h1 _ h_union_singletons
+rewrite [mem_setOf] at h
+obtain ⟨a, ⟨ha, hA⟩⟩ := h
+use a
