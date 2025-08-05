@@ -1,0 +1,11 @@
+constructor
+
+intro hA
+intro B hB
+intro a ha
+exact hA ha B hB
+
+intro hall
+intro a ha
+intro B hB
+exact hall B hB ha
