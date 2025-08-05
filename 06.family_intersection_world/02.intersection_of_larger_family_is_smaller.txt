@@ -1,0 +1,5 @@
+intro x hx
+intro A hAF
+have hAG := h1 hAF
+rewrite [mem_sInter] at hx
+exact hx A hAG
