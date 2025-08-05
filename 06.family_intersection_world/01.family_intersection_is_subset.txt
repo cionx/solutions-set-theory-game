@@ -1,0 +1,3 @@
+intro x hx
+rewrite [mem_sInter] at hx
+exact hx A h1
