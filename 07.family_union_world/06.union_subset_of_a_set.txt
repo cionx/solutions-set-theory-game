@@ -1,0 +1,14 @@
+constructor
+
+intro hFA
+intro s hsF
+intro x hxs
+apply hFA
+exact Exists.intro s (And.intro hsF hxs)
+
+intro hFA
+intro x hxF
+obtain ⟨s, hs⟩ := hxF
+have hsF := hs.left
+have hxs := hs.right
+exact hFA s hsF hxs
