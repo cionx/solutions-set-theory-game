@@ -1,0 +1,28 @@
+apply Subset.antisymm
+
+intro x hxAB
+rcases hxAB with hxA | hxB
+-- Case x ∈ A.
+have hA : A ∈ {A, B}
+left
+rfl
+exact Exists.intro A (And.intro hA hxA)
+-- Case x ∈ B.
+have hB : B ∈ {A, B}
+right
+rfl
+exact Exists.intro B (And.intro hB hxB)
+
+intro x hxAB
+obtain ⟨s, hs⟩ := hxAB
+have hxAB2 := hs.left
+have hxs := hs.right
+rcases hxAB2 with hxA | hxB
+-- Case s = A.
+left
+rewrite [← hxA]
+exact hxs
+-- Case s = B.
+right
+rewrite [← hxB]
+exact hxs
