@@ -1,0 +1,14 @@
+intro x ⟨hxF, hxGc⟩
+obtain ⟨u, ⟨huF, hxu⟩⟩ := hxF
+rewrite [mem_compl_iff] at hxGc
+rewrite [mem_sInter] at hxGc
+push_neg at hxGc
+obtain ⟨v, ⟨hvG, hxvc⟩⟩ := hxGc
+use (u ∩ vᶜ)
+constructor
+rewrite [mem_setOf]
+use u
+constructor
+exact huF
+use v
+exact And.intro hxu hxvc
