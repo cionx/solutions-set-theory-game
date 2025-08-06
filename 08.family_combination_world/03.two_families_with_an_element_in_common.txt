@@ -2,15 +2,13 @@
 -- There exists some t with s ⊆ t by h1.
 -- By h2 we also have t ⊆ s.
 -- Thus s = t is in both F and G.
-obtain ⟨s, hs⟩ := h2
-apply Exists.intro s
-have hsF := hs.left
-have hsG := hs.right
-constructor
-exact hsF
-obtain ⟨t, ht⟩ := h1 s hsF
-have hst : s ⊆ t := ht.right
-have hts : t ⊆ s := hsG t ht.left
-have h : s = t := Subset.antisymm hst hts
-rewrite [h]
-exact ht.left
+
+obtain ⟨s, ⟨hsF, htGs⟩⟩ := h2
+have ht : ∃ t ∈ G, s ⊆ t := h1 s hsF
+obtain ⟨t, ⟨htG, hst : s ⊆ t⟩⟩ := ht
+have hts : t ⊆ s := htGs t htG
+have h_s_eq_t := Subset.antisymm hst hts
+have hsG := htG
+rewrite [← h_s_eq_t] at hsG
+use s
+exact And.intro hsF hsG

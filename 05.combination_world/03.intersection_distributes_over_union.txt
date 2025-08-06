@@ -11,5 +11,9 @@ exact Or.inr (And.intro ha hc)
 -- (A ∩ B) ∪ (A ∩ C) ⊆ A ∩ (B ∪ C)
 intro x habac
 rcases habac with hab | hac
-exact And.intro hab.left (Or.inl hab.right)
-exact And.intro hac.left (Or.inr hac.right)
+have ha : x ∈ A := hab.left
+have hb : x ∈ B := hab.right
+exact And.intro ha (Or.inl hb)
+have ha : x ∈ A := hac.left
+have hc : x ∈ C := hac.right
+exact And.intro ha (Or.inr hc)

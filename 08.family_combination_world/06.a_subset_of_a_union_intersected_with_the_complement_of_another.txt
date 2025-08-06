@@ -1,6 +1,4 @@
-intro x hx
-have hxF : x ∈ ⋃₀ F := hx.left
-have hxG : x ∈ ⋃₀ G := hx.right
+intro x ⟨hxF, hxG⟩
 obtain ⟨s, ⟨hsF : s ∈ F, hxs : x ∈ s⟩⟩ := hxF
 
 have hsG : s ∈ G

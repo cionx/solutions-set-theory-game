@@ -1,14 +1,12 @@
-intro x hx
-have hxF : x ∈ ⋃₀ F := hx.left
-have hxGc : x ∈ (⋃₀ G)ᶜ := hx.right
-obtain ⟨s, hs⟩ := hxF
-have hsF : s ∈ F := hs.left
-have hxs : x ∈ s := hs.right
-apply Exists.intro s
+intro x ⟨hxF, hxGc⟩
+obtain ⟨s, ⟨hsF, hxs⟩⟩ := hxF
+use s
 constructor
 constructor
 exact hsF
 intro hsG
-have hxG : x ∈ ⋃₀ G := Exists.intro s (And.intro hsG hxs)
-exact hxGc hxG
+rewrite [mem_compl_iff] at hxGc
+rewrite [mem_sUnion] at hxGc
+push_neg at hxGc
+exact hxGc s hsG hxs
 exact hxs

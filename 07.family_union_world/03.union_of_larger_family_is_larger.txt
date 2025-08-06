@@ -3,4 +3,4 @@ obtain ⟨A, hA⟩ := hxF
 have hAF : A ∈ F := hA.left
 have hxA : x ∈ A := hA.right
 have hAG : A ∈ G := h1 hAF
-exact Exists.intro A (And.intro hAG hxA)
+use A

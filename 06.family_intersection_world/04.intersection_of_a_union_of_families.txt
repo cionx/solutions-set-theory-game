@@ -1,16 +1,15 @@
 -- Taken from Level 2 start
-have h_antitone (H K : Set (Set U)) (h1 : H ⊆ K) : ⋂₀ K ⊆ ⋂₀ H
+have h_antitone (H K : Set (Set U)) (h : H ⊆ K) : ⋂₀ K ⊆ ⋂₀ H
 intro x hx
 intro A hAH
-have hAK := h1 hAH
-rewrite [mem_sInter] at hx
+have hAK := h hAH
 exact hx A hAK
 -- Taken from Level 2 end
+
 -- Lemmas start
 have h_in_union_left {V} (A B : Set V) : A ⊆ A ∪ B
 intro a ha
-left
-exact ha
+exact Or.inl ha
 --
 have h_in_union_right {V} (A B : Set V) : B ⊆ A ∪ B
 rewrite [union_comm]
@@ -29,9 +28,9 @@ apply h_antitone at hF
 apply h_antitone at hG
 exact h_in_inter _ _ _ hF hG
 
-intro x hx
-have hxF := hx.left
-have hxG := hx.right
+intro x hxFG
+have hxF := hxFG.left
+have hxG := hxFG.right
 intro A hA
 rcases hA with hAF | hAG
 exact hxF A hAF

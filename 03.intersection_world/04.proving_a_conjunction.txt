@@ -1,1 +1,1 @@
-exact (And.intro h1 h2)
+exact And.intro h1 h2

@@ -1,4 +1,2 @@
 intro x hx
-constructor
-exact hx.right
-exact hx.left
+exact And.intro hx.right hx.left

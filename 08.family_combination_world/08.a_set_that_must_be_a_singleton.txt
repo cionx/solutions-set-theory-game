@@ -5,9 +5,9 @@ have h_union_singletons : ⋃₀ {s | ∃ a ∈ A, s = {a}} = A
 
 apply Subset.antisymm
 intro x hx
-obtain ⟨s,⟨hs, h⟩⟩ := hx
+obtain ⟨s, ⟨hs, h⟩⟩ := hx
 rewrite [mem_setOf] at hs
-obtain ⟨a,⟨ha,has⟩⟩ := hs
+obtain ⟨a, ⟨ha,has⟩⟩ := hs
 rewrite [has] at h
 rewrite [mem_singleton_iff] at h
 rewrite [h]
@@ -15,8 +15,8 @@ exact ha
 
 intro a ha
 use {a}
-rewrite [mem_setOf]
 constructor
+rewrite [mem_setOf]
 use a
 rfl
 

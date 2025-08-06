@@ -1,15 +1,15 @@
 apply Subset.antisymm
 
 intro x hx
-rewrite [mem_sUnion]
 rewrite [mem_compl_iff] at hx
 rewrite [mem_sInter] at hx
 push_neg at hx
-obtain ⟨t, ht⟩ := hx
-apply Exists.intro tᶜ
+obtain ⟨t, ⟨htF, hxt⟩⟩ := hx
+rewrite [← mem_compl_iff] at hxt
+rewrite [← compl_compl t] at htF
+use tᶜ
 rewrite [mem_setOf]
-rewrite [compl_compl]
-exact ht
+exact And.intro htF hxt
 
 intro x hx
 obtain ⟨s, hs⟩ := hx

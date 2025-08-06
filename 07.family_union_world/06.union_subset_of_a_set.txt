@@ -1,14 +1,14 @@
 constructor
 
+-- ⋃₀ F ⊆ A  →  ∀ s ∈ F, s ⊆ A
 intro hFA
 intro s hsF
 intro x hxs
 apply hFA
-exact Exists.intro s (And.intro hsF hxs)
+use s
 
+-- ∀ s ∈ F, s ⊆ A  →  ⋃₀ F ⊆ A
 intro hFA
 intro x hxF
-obtain ⟨s, hs⟩ := hxF
-have hsF := hs.left
-have hxs := hs.right
+obtain ⟨s, ⟨hsF, hxs⟩⟩ := hxF
 exact hFA s hsF hxs

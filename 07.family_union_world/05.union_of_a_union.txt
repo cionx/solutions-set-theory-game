@@ -16,11 +16,9 @@ exact h2 hxB
 --
 have fam_union_isotone {V} (H K : Set (Set V)) (h : H ⊆ K) : ⋃₀ H ⊆ ⋃₀ K
 intro x hxH
-obtain ⟨A, hxAH⟩ := hxH
-have hAH := hxAH.left
+obtain ⟨A, ⟨hAH, hxA⟩⟩ := hxH
 have hAK := h hAH
-have hxA := hxAH.right
-exact Exists.intro A (And.intro hAK hxA)
+use A
 -- Lemmas end
 
 apply Subset.antisymm
@@ -32,9 +30,9 @@ have hAFG := hA.left
 have hxA := hA.right
 rcases hAFG with hAF | hAG
 left
-exact Exists.intro A (And.intro hAF hxA)
+use A
 right
-exact Exists.intro A (And.intro hAG hxA)
+use A
 
 -- (⋃₀ F) ∪ (⋃₀ G) ⊆ ⋃₀ (F ∪ G)
 have hF := in_union_left F G

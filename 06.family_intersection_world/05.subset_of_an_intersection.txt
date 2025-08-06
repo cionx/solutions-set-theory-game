@@ -1,11 +1,13 @@
 constructor
 
-intro hA
-intro B hB
+-- A ⊆ ⋂₀ F  →  ∀ s ∈ F, A ⊆ S
+intro hAF
+intro s hs
 intro a ha
-exact hA ha B hB
+exact hAF ha s hs
 
-intro hall
+-- ∀ s ∈ F, A ⊆ S  →  A ⊆ ⋂₀ F
+intro h_all
 intro a ha
-intro B hB
-exact hall B hB ha
+intro s hs
+exact h_all s hs ha

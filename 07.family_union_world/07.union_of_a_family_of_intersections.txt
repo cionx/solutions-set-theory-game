@@ -1,30 +1,21 @@
 apply Subset.antisymm
 
-intro x hx
-have hxA := hx.left
-have hxF := hx.right
-obtain ⟨u, hu⟩ := hxF
-have huF := hu.left
-have hxu := hu.right
+-- A ∩ ⋃₀ F ⊆ ⋃₀ {s | ∃ u ∈ F, s = A ∩ u}
+intro x ⟨hxA, hxF⟩
+obtain ⟨u, ⟨huF, hxu⟩⟩ := hxF
 rewrite [mem_sUnion]
 apply Exists.intro (A ∩ u)
 constructor
-rewrite [mem_setOf]
-apply Exists.intro u
-constructor
-exact huF
-rfl
+use u
 exact And.intro hxA hxu
 
+-- ⋃₀ {s | ∃ u ∈ F, s = A ∩ u} ⊆ A ∩ ⋃₀ F
 intro x hx
-obtain ⟨s, hs1⟩ := hx
-have hs2 := hs1.left
-have hxs := hs1.right
-obtain ⟨u, hu⟩ := hs2
-have huF := hu.left
-have hsAu := hu.right
-rewrite [hsAu] at hxs
+obtain ⟨s, ⟨hs, hx⟩⟩ := hx
+obtain ⟨u, ⟨huF, hsAu⟩⟩ := hs
+rewrite [hsAu] at hx
+have hxA : x ∈ A := hx.left
+have hxu : x ∈ u := hx.right
 constructor
-exact hxs.left
-apply Exists.intro u
-exact And.intro huF hxs.right
+exact hxA
+use u

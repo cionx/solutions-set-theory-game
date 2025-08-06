@@ -1,3 +1,2 @@
-intro a
-intro h
-exact h
+intro a ha
+exact ha

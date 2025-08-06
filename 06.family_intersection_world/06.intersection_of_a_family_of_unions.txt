@@ -1,15 +1,19 @@
-intro x hxG
+intro x hx
+
+have hxAs (s : Set U) (hsF : s ∈ F) : x ∈ A ∪ s
+have hAsG := h1 s hsF
+exact hx (A ∪ s) hAsG
+
 by_cases hxA : x ∈ A
-
+-- Case 1: x ∈ A.
 exact Or.inl hxA
-
+-- Case 2 : x ∉ A.
 right
 intro s hsF
-have hAsG : A ∪ s ∈ G := h1 s hsF
-have hxAs := hxG (A ∪ s) hAsG
-rcases hxAs with hxA2 | hxs
--- We still don’t have Ex Falso Quodlibet!!! >:(
-by_contra hxs
-exact hxA hxA2
---
-exact hxs
+have hxAs2 : x ∈ A ∪ s := hxAs s hsF
+rcases hxAs2 with hA | hs
+-- We need unnecessary proof by contradiction
+-- because we don’t have ex falso.
+by_contra
+exact hxA hA
+exact hs
