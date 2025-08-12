@@ -1,28 +1,21 @@
 apply Subset.antisymm
+· intro x hxAB
+  rcases hxAB with hxA | hxB
+  · have hA : A ∈ {A, B}
+    · left
+      rfl
+    exact Exists.intro A ⟨hA, hxA⟩
+  · have hB : B ∈ {A, B}
+    · right
+      rfl
+    exact Exists.intro B ⟨hB, hxB⟩
 
--- A ∪ B ⊆ ⋃₀ {A, B}
-intro x hxAB
-rcases hxAB with hxA | hxB
--- Case x ∈ A.
-have hA : A ∈ {A, B}
-left
-rfl
-use A
--- Case x ∈ B.
-have hB : B ∈ {A, B}
-right
-rfl
-use B
-
--- ⋃₀ {A, B} ⊆ A ∪ B
-intro x hxAB
-obtain ⟨s, ⟨hxAB2, hxs⟩⟩ := hxAB
-rcases hxAB2 with hxA | hxB
--- Case s = A.
-left
-rewrite [← hxA]
-exact hxs
--- Case s = B.
-right
-rewrite [← hxB]
-exact hxs
+· intro x hxAB
+  obtain ⟨s, ⟨hxAB, hxs⟩⟩ := hxAB
+  rcases hxAB with hxA | hxB
+  · left
+    rewrite [← hxA]
+    exact hxs
+  · right
+    rewrite [← hxB]
+    exact hxs

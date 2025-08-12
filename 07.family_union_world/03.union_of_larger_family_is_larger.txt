@@ -1,6 +1,4 @@
 intro x hxF
-obtain ⟨A, hA⟩ := hxF
-have hAF : A ∈ F := hA.left
-have hxA : x ∈ A := hA.right
+obtain ⟨A, ⟨hAF, hxA⟩⟩ := hxF
 have hAG : A ∈ G := h1 hAF
-use A
+exact Exists.intro A ⟨hAG, hxA⟩

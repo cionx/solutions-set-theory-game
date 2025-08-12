@@ -1,17 +1,13 @@
 apply Subset.antisymm
-
--- (A ∪ B) ∪ C → A ∪ (B ∪ C)
-intro x habc
-rcases habc with hab | hc
-rcases hab with ha | hb
-exact Or.inl ha
-exact Or.inr (Or.inl hb)
-exact Or.inr (Or.inr hc)
-
--- A ∪ (B ∪ C) → (A ∪ B) ∪ C
-intro x habc
-rcases habc with ha | hbc
-exact Or.inl (Or.inl ha)
-rcases hbc with hb | hc
-exact Or.inl (Or.inr hb)
-exact Or.inr hc
+· intro x habc
+  rcases habc with hab | hc
+  · rcases hab with ha | hb
+    · exact Or.inl ha
+    · exact Or.inr (Or.inl hb)
+  · exact Or.inr (Or.inr hc)
+· intro x habc
+  rcases habc with ha | hbc
+  · exact Or.inl (Or.inl ha)
+  · rcases hbc with hb | hc
+    · exact Or.inl (Or.inr hb)
+    · exact Or.inr hc

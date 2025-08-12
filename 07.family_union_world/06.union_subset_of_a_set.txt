@@ -1,14 +1,10 @@
 constructor
-
--- ⋃₀ F ⊆ A  →  ∀ s ∈ F, s ⊆ A
-intro hFA
-intro s hsF
-intro x hxs
-apply hFA
-use s
-
--- ∀ s ∈ F, s ⊆ A  →  ⋃₀ F ⊆ A
-intro hFA
-intro x hxF
-obtain ⟨s, ⟨hsF, hxs⟩⟩ := hxF
-exact hFA s hsF hxs
+· intro hFA
+  intro s hsF
+  intro x hxs
+  apply hFA
+  exact Exists.intro s ⟨hsF, hxs⟩
+· intro hFA
+  intro x hxF
+  obtain ⟨s, ⟨hsF, hxs⟩⟩ := hxF
+  exact hFA s hsF hxs

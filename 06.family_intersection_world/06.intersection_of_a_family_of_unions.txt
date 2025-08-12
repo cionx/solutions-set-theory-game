@@ -1,19 +1,11 @@
-intro x hx
-
-have hxAs (s : Set U) (hsF : s ∈ F) : x ∈ A ∪ s
-have hAsG := h1 s hsF
-exact hx (A ∪ s) hAsG
-
+intro x hxG
 by_cases hxA : x ∈ A
--- Case 1: x ∈ A.
-exact Or.inl hxA
--- Case 2 : x ∉ A.
-right
-intro s hsF
-have hxAs2 : x ∈ A ∪ s := hxAs s hsF
-rcases hxAs2 with hA | hs
--- We need unnecessary proof by contradiction
--- because we don’t have ex falso.
-by_contra
-exact hxA hA
-exact hs
+· exact Or.inl hxA
+· right
+  intro s hsF
+  have hAsG : A ∪ s ∈ G := h1 s hsF
+  have hxAs : x ∈ A ∪ s := hxG (A ∪ s) hAsG
+  rcases hxAs with hxA2 | hxs
+  · by_contra hxs  -- We don’t have ex falso.
+    exact hxA hxA2
+  · exact hxs

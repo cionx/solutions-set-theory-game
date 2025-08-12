@@ -1,2 +1,2 @@
 intro x hx
-exact And.intro hx.right hx.left
+exact ⟨hx.right, hx.left⟩

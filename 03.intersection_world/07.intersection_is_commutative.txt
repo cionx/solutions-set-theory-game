@@ -1,3 +1,6 @@
-apply Subset.antisymm
-exact inter_subset_swap A B
-exact inter_subset_swap B A
+ext x
+constructor
+· intro ⟨⟨ha, hb⟩, hc⟩
+  exact ⟨ha, ⟨hb, hc⟩⟩
+· intro ⟨ha, ⟨hb, hc⟩⟩
+  exact ⟨⟨ha, hb⟩, hc⟩

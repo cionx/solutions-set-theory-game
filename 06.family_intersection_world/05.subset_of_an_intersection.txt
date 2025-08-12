@@ -1,13 +1,9 @@
 constructor
-
--- A ⊆ ⋂₀ F  →  ∀ s ∈ F, A ⊆ S
-intro hAF
-intro s hs
-intro a ha
-exact hAF ha s hs
-
--- ∀ s ∈ F, A ⊆ S  →  A ⊆ ⋂₀ F
-intro h_all
-intro a ha
-intro s hs
-exact h_all s hs ha
+· intro hA
+  intro B hB
+  intro a ha
+  exact hA ha B hB
+· intro h_all
+  intro a ha
+  intro B hB
+  exact h_all B hB ha

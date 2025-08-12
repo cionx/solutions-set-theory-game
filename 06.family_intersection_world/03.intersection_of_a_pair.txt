@@ -1,23 +1,24 @@
 ext x
 constructor
-
--- A ∩ B  →  ⋂₀ {A, B}
-intro hx
-intro t ht
-rcases ht with hA | hB
-rewrite [hA]
-exact hx.left
-rewrite [hB]
-exact hx.right
-
--- ⋂₀ {A, B} → A ∩ B
-intro hx
-have hA : A ∈ {A, B} -- One-line proof?
-left
-apply rfl
-have hB : B ∈ {A, B} -- One-line proof?
-right
-rfl
-constructor
-exact hx A hA
-exact hx B hB
+· intro hx
+  rewrite [mem_sInter]
+  intro t ht
+  rewrite [mem_pair t A B] at ht
+  rcases ht with hA | hB
+  · rewrite [hA]
+    exact hx.left
+  · rewrite [hB]
+    exact hx.right
+· intro hx
+  rewrite [mem_sInter] at hx
+  constructor
+  · have hA : A ∈ {A, B}
+    · rewrite [mem_pair]
+      left
+      rfl
+    exact hx A hA
+  · have hB : B ∈ {A, B}
+    · rewrite [mem_pair]
+      right
+      rfl
+    exact hx B hB

@@ -1,4 +1,3 @@
-intro x hx
-intro ha
-have hb : x ∈ B := h1 ha
-exact hx hb
+intro x h2
+intro h3
+exact h2 (h1 h3)

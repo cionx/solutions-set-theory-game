@@ -6,9 +6,9 @@ push_neg at hxGc
 obtain ⟨v, ⟨hvG, hxvc⟩⟩ := hxGc
 use (u ∩ vᶜ)
 constructor
-rewrite [mem_setOf]
-use u
-constructor
-exact huF
-use v
-exact And.intro hxu hxvc
+· rewrite [mem_setOf]
+  use u
+  constructor
+  · exact huF
+  · use v
+· exact And.intro hxu hxvc
