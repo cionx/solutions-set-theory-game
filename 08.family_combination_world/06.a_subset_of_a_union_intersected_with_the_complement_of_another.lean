@@ -3,8 +3,7 @@ obtain ⟨s, ⟨hsF : s ∈ F, hxs : x ∈ s⟩⟩ := hxF
 have hsG : s ∈ G
 · by_contra hsnG
   have hsFGc : s ∈ F ∩ Gᶜ := ⟨hsF, hsnG⟩
-  have hxFGc : x ∈ ⋃₀ (F ∩ Gᶜ)
-  · use s
+  have hxFGc : x ∈ ⋃₀ (F ∩ Gᶜ) := by use s
   apply h1 at hxFGc
   exact hxFGc.right hxG
 

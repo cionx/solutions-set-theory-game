@@ -12,13 +12,7 @@ constructor
 · intro hx
   rewrite [mem_sInter] at hx
   constructor
-  · have hA : A ∈ {A, B}
-    · rewrite [mem_pair]
-      left
-      rfl
+  · have hA : A ∈ {A, B} := by left; rfl
     exact hx A hA
-  · have hB : B ∈ {A, B}
-    · rewrite [mem_pair]
-      right
-      rfl
+  · have hB : B ∈ {A, B} := by right; rfl
     exact hx B hB
